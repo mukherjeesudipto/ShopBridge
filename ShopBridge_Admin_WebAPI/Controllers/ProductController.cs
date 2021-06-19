@@ -9,21 +9,23 @@ using ShopBridge_Admin_DataAccess;
 using ShopBridge_Admin_Services;
 using System.Data.Entity;
 using System.IdentityModel;
+using WebApi.OutputCache.V2;
 
 namespace ShopBridge_Admin_WebAPI.Controllers
-{
+{ 
     public class ProductController : ApiController
     {
         private readonly IProduct _prodService;
 
         public ProductController(IProduct prodservice)
         {
-            _prodService = prodservice;
+            this._prodService = prodservice;
         }
 
         public ProductController() : base() { }
 
         [HttpGet]
+        [CacheOutput(ServerTimeSpan = 5)]
         public IHttpActionResult FetchAllProducts()
         {
             var productList = _prodService.GetAllProducts();
@@ -32,11 +34,12 @@ namespace ShopBridge_Admin_WebAPI.Controllers
         }
 
         [HttpGet]
+        [CacheOutput(ServerTimeSpan = 5)]
         public IHttpActionResult FetchProductById([FromUri] int id)
         {
             var product = _prodService.GetProductById(id);
 
-            if (product != null)
+            if (product.Result != null)
             {
                 return Ok(product);
             }
@@ -45,6 +48,7 @@ namespace ShopBridge_Admin_WebAPI.Controllers
         }
 
         [HttpGet]
+        [CacheOutput(ServerTimeSpan = 5)]
         public IHttpActionResult FetchProductByCategory([FromUri] string category)
         {
             var categorisedProducts = _prodService.GetProductByCategory(category);
@@ -93,7 +97,7 @@ namespace ShopBridge_Admin_WebAPI.Controllers
             {
                 var product = _prodService.GetProductById(id);
 
-                if (product != null)
+                if (product.Result != null)
                 {
                     _prodService.UpdateProduct(id, prod);
                     return Content(HttpStatusCode.OK, string.Format("Product with id {0} updated successfully.", id));
@@ -114,7 +118,7 @@ namespace ShopBridge_Admin_WebAPI.Controllers
             {
                 var product = _prodService.GetProductById(id);
 
-                if (product != null)
+                if (product.Result != null)
                 {
                     _prodService.DeleteProduct(id);
                     return Content(HttpStatusCode.OK, string.Format("Product with id {0} deleted successfully.", id));

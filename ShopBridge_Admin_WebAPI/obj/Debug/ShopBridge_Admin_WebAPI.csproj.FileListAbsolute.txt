@@ -134,3 +134,6 @@ C:\Users\Sudipto\Desktop\ShopBridge_Admin\ShopBridge_Admin_WebAPI\bin\NLog.xml
 C:\Users\Sudipto\Desktop\ShopBridge_Admin\ShopBridge_Admin_WebAPI\bin\System.Diagnostics.DiagnosticSource.xml
 C:\Users\Sudipto\Desktop\ShopBridge_Admin\ShopBridge_Admin_WebAPI\bin\System.Threading.Tasks.Extensions.xml
 C:\Users\Sudipto\Desktop\ShopBridge_Admin\ShopBridge_Admin_WebAPI\bin\Autofac.Integration.WebApi.pdb
+C:\Users\Sudipto\Desktop\ShopBridge_Admin\ShopBridge_Admin_WebAPI\bin\WebApi.OutputCache.Core.dll
+C:\Users\Sudipto\Desktop\ShopBridge_Admin\ShopBridge_Admin_WebAPI\bin\WebApi.OutputCache.V2.dll
+C:\Users\Sudipto\Desktop\ShopBridge_Admin\ShopBridge_Admin_WebAPI\bin\WebApi.OutputCache.V2.xml
