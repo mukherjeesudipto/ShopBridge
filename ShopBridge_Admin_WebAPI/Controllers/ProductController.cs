@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -17,6 +17,8 @@ namespace ShopBridge_Admin_WebAPI.Controllers
     {
         private readonly IProduct _prodService;
 
+        Dictionary<string, IEnumerable<Product>> dictProduct = new Dictionary<string, IEnumerable<Product>>();
+
         public ProductController(IProduct prodservice)
         {
             this._prodService = prodservice;
@@ -29,8 +31,9 @@ namespace ShopBridge_Admin_WebAPI.Controllers
         public IHttpActionResult FetchAllProducts()
         {
             var productList = _prodService.GetAllProducts();
+            dictProduct.Add("products", productList.Result);
 
-            return Ok(productList);
+            return Ok(dictProduct);
         }
 
         [HttpGet]
